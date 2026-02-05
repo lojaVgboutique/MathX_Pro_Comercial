@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MathX Pro - Jogo Matemático Evolutivo Premium</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            background: #0f0f0f;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        /* ===== PÁGINA DE LOJA ===== */
+        .store-page {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 100%);
+        }
+
+        .navbar {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid rgba(102, 126, 234, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .buy-btn-nav {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 12px 30px;
+            border-radius: 10px;
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .buy-btn-nav:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+        }
+
+        .hero-section {
+            padding: 100px 50px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .hero-title {
+            font-size: 64px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 24px;
+            color: #bbb;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 80px 50px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(102, 126, 234, 0.5);
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .feature-text {
+            color: #aaa;
+            line-height: 1.6;
+        }
+
+        .pricing-section {
+            padding: 80px 50px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            padding: 50px 40px;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        .pricing-card.featured {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+            border: 2px solid rgba(102, 126, 234, 0.6);
+            transform: scale(1.05);
+        }
+
+        .pricing-card:hover {
+            border-color: rgba(102, 126, 234, 0.6);
+        }
+
+        .price-tag {
+            font-size: 48px;
+            font-weight: 900;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .price-tag .currency {
+            font-size: 24px;
+        }
+
+        .price-description {
+            color: #aaa;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .price-features {
+            text-align: left;
+            margin: 30px 0;
+            color: #ddd;
+            font-size: 14px;
+            line-height: 2;
+        }
+
+        .price-features li {
+            list-style: none;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .price-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4caf50;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .buy-button {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .buy-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        .info-section {
+            padding: 80px 50px;
+            background: rgba(102, 126, 234, 0.05);
+            border-top: 1px solid rgba(102, 126, 234, 0.2);
+            border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .info-content {
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .info-item {
+            margin-bottom: 40px;
+        }
+
+        .info-item h3 {
+            font-size: 24px;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .info-item p {
+            color: #ccc;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 50px;
+            text-align: center;
+            border-top: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .footer-links {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #764ba2;
+        }
+
+        .footer-text {
+            color: #888;
+            font-size: 14px;
+        }
+
+        /* ===== MODAL DE COMPRA ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border: 2px solid rgba(102, 126, 234, 0.4);
+            padding: 50px;
+            border-radius: 25px;
+            max-width: 600px;
+            width: 90%;
+            animation: slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 32px;
+            color: #667eea;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .close-modal:hover {
+            color: #764ba2;
+            transform: scale(1.2);
+        }
+
+        .modal-title {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .modal-price {
+            font-size: 36px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ddd;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+        }
+
+        .checkbox-group label {
+            margin: 0;
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .checkout-button {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .checkout-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        .checkout-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* ===== JOGO ===== */
+        .game-page {
+            display: none;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-page.game-2 {
+            background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e);
+            background-size: 400% 400%;
+            animation: darkGradient 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes darkGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .game-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .game-box {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.3);
+            padding: 50px;
+            max-width: 700px;
+            width: 100%;
+        }
+
+        .game-page.game-2 .game-box {
+            background: rgba(20, 20, 40, 0.95);
+            border: 2px solid rgba(0, 255, 150, 0.3);
+        }
+
+        .game-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .game-title {
+            font-size: 42px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .game-page.game-2 .game-title {
+            background: linear-gradient(135deg, #00ff96 0%, #00d4ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .game-subtitle {
+            color: #999;
+        }
+
+        .game-page.game-2 .game-subtitle {
+            color: #00ffaa;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            padding: 30px;
+            border-radius: 20px;
+            border: 2px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .game-page.game-2 .stats-grid {
+            background: linear-gradient(135deg, rgba(0, 255, 150, 0.05) 0%, rgba(0, 212, 255, 0.05) 100%);
+            border: 2px solid rgba(0, 255, 150, 0.2);
+        }
+
+        .stat-box {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .game-page.game-2 .stat-box {
+            background: rgba(0, 255, 150, 0.05);
+            border: 1px solid rgba(0, 255, 150, 0.2);
+        }
+
+        .stat-label {
+            color: #999;
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .game-page.game-2 .stat-label {
+            color: #00ffaa;
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 900;
+            color: #667eea;
+        }
+
+        .game-page.game-2 .stat-value {
+            color: #00ff96;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin-bottom: 40px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.5s;
+        }
+
+        .game-page.game-2 .progress-fill {
+            background: linear-gradient(90deg, #00ff96 0%, #00d4ff 100%);
+        }
+
+        .level-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .game-page.game-2 .level-box {
+            background: linear-gradient(135deg, #00ff96 0%, #00d4ff 100%);
+        }
+
+        .level-label {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .level-number {
+            font-size: 54px;
+            font-weight: 900;
+        }
+
+        .etymology-box {
+            background: linear-gradient(135deg, rgba(255, 200, 0, 0.1) 0%, rgba(255, 150, 0, 0.1) 100%);
+            border: 2px solid rgba(255, 200, 0, 0.3);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+        }
+
+        .etymology-title {
+            color: #ff9800;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .etymology-text {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .question-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            border: 2px solid rgba(102, 126, 234, 0.2);
+            text-align: center;
+        }
+
+        .game-page.game-2 .question-box {
+            background: linear-gradient(135deg, rgba(0, 255, 150, 0.05) 0%, rgba(0, 212, 255, 0.05) 100%);
+            border: 2px solid rgba(0, 255, 150, 0.2);
+        }
+
+        .question-text {
+            color: #333;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .game-page.game-2 .question-text {
+            color: #00ffaa;
+        }
+
+        .math-expr {
+            font-size: 48px;
+            color: #667eea;
+            font-weight: 900;
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.5) 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        .game-page.game-2 .math-expr {
+            color: #00ff96;
+            background: rgba(0, 255, 150, 0.1);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .difficulty {
+            font-size: 12px;
+            color: #999;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .game-page.game-2 .difficulty {
+            color: #00ffaa;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 18px;
+            border: 2px solid #ddd;
+            border-radius: 15px;
+            font-size: 18px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+
+        .game-page.game-2 .input-field {
+            background: rgba(0, 255, 150, 0.05);
+            border: 2px solid rgba(0, 255, 150, 0.3);
+            color: #00ffaa;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .game-page.game-2 .input-field:focus {
+            border-color: #00ff96;
+        }
+
+        .button-row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-check {
+            flex: 1;
+            padding: 18px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+
+        .game-page.game-2 .btn-check {
+            background: linear-gradient(135deg, #00ff96 0%, #00d4ff 100%);
+            color: #000;
+        }
+
+        .btn-check:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-hint {
+            flex: 0.4;
+            padding: 18px;
+            background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+
+        .btn-hint:hover {
+            transform: translateY(-3px);
+        }
+
+        .feedback-msg {
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 700;
+            animation: popIn 0.5s;
+        }
+
+        .feedback-msg.success {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            color: #155724;
+            border: 2px solid #4caf50;
+        }
+
+        .feedback-msg.error {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            color: #721c24;
+            border: 2px solid #f44336;
+        }
+
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.9); }
+            50% { transform: scale(1.05); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .hint-box {
+            background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
+            border: 2px solid #ffc107;
+            color: #856404;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .game-over-box {
+            text-align: center;
+            padding: 50px;
+        }
+
+        .game-over-title {
+            font-size: 42px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            color: #667eea;
+        }
+
+        .game-page.game-2 .game-over-title {
+            color: #00ff96;
+        }
+
+        .final-score {
+            font-size: 72px;
+            font-weight: 900;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .game-page.game-2 .final-score {
+            color: #00ff96;
+        }
+
+        .final-message {
+            font-size: 20px;
+            color: #666;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        .game-page.game-2 .final-message {
+            color: #00ffaa;
+        }
+
+        .btn-restart {
+            padding: 18px 40px;
+            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+
+        .btn-restart:hover {
+            transform: translateY(-3px);
+        }
+
+        .particle {
+            position: fixed;
+            pointer-events: none;
+            top: -10px;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            to {
+                transform: translateY(100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        .particle-neon {
+            position: fixed;
+            pointer-events: none;
+            top: -10px;
+            left: 50%;
+            width: 8px;
+            height: 8px;
+            background: rgba(0, 255, 150, 0.8);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 255, 150, 0.8);
+            animation: float 25s infinite linear;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 20px;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .hero-section {
+                padding: 50px 20px;
+            }
+
+            .hero-title {
+                font-size: 40px;
+            }
+
+            .features-grid,
+            .pricing-section {
+                padding: 40px 20px;
+            }
+
+            .game-box {
+                padding: 30px;
+            }
+
+            .button-row {
+                flex-direction: column;
+            }
+
+            .btn-hint {
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== PÁGINA DE LOJA ===== -->
+    <div class="store-page" id="storePage">
+        <nav class="navbar">
+            <div class="logo">🎮 MathX Pro</div>
+            <div class="nav-links">
+                <a href="#features">Recursos</a>
+                <a href="#pricing">Preços</a>
+                <button class="buy-btn-nav" onclick="scrollToPricing()">Comprar Agora</button>
+            </div>
+        </nav>
+
+        <section class="hero-section">
+            <h1 class="hero-title">MathX Pro</h1>
+            <p class="hero-subtitle">O único jogo matemático evolutivo no mundo que ensina etimologia enquanto você se diverte. Transforme sua forma de aprender matemática.</p>
+            <button class="buy-btn-nav" style="padding: 18px 50px; font-size: 18px;" onclick="scrollToPricing()">Começar Agora</button>
+        </section>
+
+        <section class="features-grid" id="features">
+            <div class="feature-card">
+                <div class="feature-icon">📚</div>
+                <div class="feature-title">Aprenda Etimologia</div>
+                <div class="feature-text">Descubra a origem das operações matemáticas do latim e grego antigo. Aprenda matemática E linguística simultaneamente!</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎮</div>
+                <div class="feature-title">Dois Jogos em Um</div>
+                <div class="feature-text">Domine Números em Fuga com 5 níveis, depois avance para Cálculo Infinito com 3 desafios supremos.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🏆</div>
+                <div class="feature-title">Sistema de Progressão</div>
+                <div class="feature-text">Suba de nível, acumule pontos e desbloqueie desafios mais complexos. Ganhe ao conquistar o topo!</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <div class="feature-title">Tema Dinâmico</div>
+                <div class="feature-text">Cores vibrantes no primeiro jogo, tema neon cyberpunk no segundo. Transição cinematográfica épica!</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💡</div>
+                <div class="feature-title">Dicas Inteligentes</div>
+                <div class="feature-text">Receba dicas progressivas que não revelam respostas. Aprenda através da descoberta!</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌟</div>
+                <div class="feature-title">Único no Mundo</div>
+                <div class="feature-text">Conceito, design e execução 100% únicos. Nenhum outro jogo como este existe!</div>
+            </div>
+        </section>
+
+        <section class="pricing-section" id="pricing">
+            <h2 class="section-title">Planos de Preço</h2>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3 style="font-size: 24px; margin-bottom: 10px; color: #fff;">MathX Lite</h3>
+                    <div class="price-tag"><span class="currency">R$</span>9,99</div>
+                    <div class="price-description">Compra única - Uma vez apenas</div>
+                    <ul class="price-features">
+                        <li>Jogo Números em Fuga (5 níveis)</li>
+                        <li>Acesso básico ao conteúdo</li>
+                        <li>Dicas limitadas</li>
+                        <li>Sem atualizações</li>
+                    </ul>
+                    <button class="buy-button" onclick="openCheckout('MathX Lite', 9.99)">Comprar por R$ 9,99</button>
+                </div>
+
+                <div class="pricing-card featured">
+                    <div style="color: #ffd700; font-weight: 700; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px;">⭐ RECOMENDADO</div>
+                    <h3 style="font-size: 24px; margin-bottom: 10px; color: #fff;">MathX Pro</h3>
+                    <div class="price-tag"><span class="currency">R$</span>19,99</div>
+                    <div class="price-description">Compra única - Uma vez apenas</div>
+                    <ul class="price-features">
+                        <li>✓ Números em Fuga (5 níveis)</li>
+                        <li>✓ Cálculo Infinito (3 níveis)</li>
+                        <li>✓ Todos os conteúdos de etimologia</li>
+                        <li>✓ Dicas ilimitadas</li>
+                        <li>✓ Atualizações permanentes</li>
+                        <li>✓ Sem anúncios</li>
+                    </ul>
+                    <button class="buy-button" onclick="openCheckout('MathX Pro', 19.99)" style="background: linear-gradient(135deg, #ffd700 0%, #ffaa00 100%); color: #000;">Comprar por R$ 19,99</button>
+                </div>
+
+                <div class="pricing-card">
+                    <h3 style="font-size: 24px; margin-bottom: 10px; color: #fff;">MathX Ultimate</h3>
+                    <div class="price-tag"><span class="currency">R$</span>29,99</div>
+                    <div class="price-description">Compra única - Uma vez apenas</div>
+                    <ul class="price-features">
+                        <li>Tudo do MathX Pro</li>
+                        <li>+ Conteúdo extra (quando lançado)</li>
+                        <li>+ Suporte prioritário</li>
+                        <li>+ Licença perpétua</li>
+                        <li>+ Certificado digital</li>
+                    </ul>
+                    <button class="buy-button" onclick="openCheckout('MathX Ultimate', 29.99)">Comprar por R$ 29,99</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="info-section">
+            <div class="info-content">
+                <div class="info-item">
+                    <h3>🎯 Para Quem É?</h3>
+                    <p>MathX Pro é perfeito para estudantes de qualquer idade que querem aprender matemática de forma divertida e interativa. Professores também podem usar como ferramenta educacional complementar. Se você quer dominar operações matemáticas enquanto aprende a origem das palavras em latim e grego, este é seu jogo!</p>
+                </div>
+                <div class="info-item">
+                    <h3>📊 Progressão Completa</h3>
+                    <p>Comece do básico com adição e subtração, evolua para multiplicação e divisão, depois entre em cálculos avançados. No segundo jogo, desbloqueie radiciação, potência, trigonometria e funções exponenciais. Cada nível vem com lições sobre etimologia dos conceitos.</p>
+                </div>
+                <div class="info-item">
+                    <h3>💻 Compatibilidade</h3>
+                    <p>MathX Pro funciona em qualquer navegador moderno: Chrome, Firefox, Safari, Edge. Desktop, tablet e mobile - funciona em todos! Sem instalação necessária. Clique e jogue.</p>
+                </div>
+                <div class="info-item">
+                    <h3>🔒 Licença Perpétua</h3>
+                    <p>Seu acesso é vitalício. Compre uma vez e tenha acesso para sempre. Sem assinatura recorrente, sem cobranças mensais. Uma compra, infinitas horas de diversão educativa.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="#" onclick="showTerms(); return false;">Termos de Uso</a>
+                <a href="#" onclick="showPrivacy(); return false;">Privacidade</a>
+                <a href="mailto:suporte@mathxpro.com">Suporte</a>
+                <a href="#">Sobre</a>
+            </div>
+            <p class="footer-text">© 2025 MathX Pro. Todos os direitos reservados. | Jogo Único e Exclusivo no Mundo</p>
+        </footer>
+    </div>
+
+    <!-- ===== MODAL DE CHECKOUT ===== -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeCheckout()">&times;</span>
+            <h2 class="modal-title" id="modalTitle">MathX Pro</h2>
+            <div class="modal-price" id="modalPrice">R$ 19.99</div>
+
+            <form onsubmit="processPayment(event)">
+                <div class="form-group">
+                    <label>Nome Completo*</label>
+                    <input type="text" id="fullName" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Email*</label>
+                    <input type="email" id="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label>CPF*</label>
+                    <input type="text" id="cpf" placeholder="000.000.000-00" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Número do Cartão*</label>
+                    <input type="text" id="cardNumber" placeholder="0000 0000 0000 0000" maxlength="19" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Data de Expiração*</label>
+                        <input type="text" id="expiry" placeholder="MM/YY" maxlength="5" required>
+                    </div>
+                    <div class="form-group">
+                        <label>CVV*</label>
+                        <input type="text" id="cvv" placeholder="123" maxlength="3" required>
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="termsCheckbox" required>
+                    <label>Concordo com os <a href="#" onclick="showTerms(); return false;" style="color: #667eea; text-decoration: underline;">Termos de Uso</a> e <a href="#" onclick="showPrivacy(); return false;" style="color: #667eea; text-decoration: underline;">Política de Privacidade</a></label>
+                </div>
+
+                <button type="submit" class="checkout-button">Confirmar Pagamento</button>
+            </form>
+
+            <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(102, 126, 234, 0.2); text-align: center; color: #aaa; font-size: 12px;">
+                <p>Pagamento seguro 🔒 | Seu e-mail receberá a chave de ativação imediatamente após a compra</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== PÁGINA DO JOGO ===== -->
+    <div class="game-page" id="gamePage">
+        <div class="game-container">
+            <div class="game-box">
+                <div class="game-header">
+                    <div class="game-title" id="gameTitle">🎮 Números em Fuga</div>
+                    <div class="game-subtitle" id="gameSubtitle">Domine os 5 níveis</div>
+                </div>
+
+                <div id="gameContent">
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <div class="stat-label">Pontuação</div>
+                            <div class="stat-value" id="score">0</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">Acertos</div>
+                            <div class="stat-value" id="correct">0/0</div>
+                        </div>
+                    </div>
+
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill" style="width: 20%"></div>
+                    </div>
+
+                    <div class="level-box">
+                        <div class="level-label" id="levelLabel">Nível Atual</div>
+                        <div class="level-number" id="levelNum">1</div>
+                    </div>
+
+                    <div id="etymologyArea"></div>
+
+                    <div id="questionArea">
+                        <div class="question-box">
+                            <div class="question-text">Qual é o resultado?</div>
+                            <div class="math-expr" id="mathExpr">2 + 3</div>
+                            <div class="difficulty" id="difficulty">Básico</div>
+                        </div>
+
+                        <div id="hintArea"></div>
+                        <div id="feedbackArea"></div>
+
+                        <input type="number" class="input-field" id="answerInput" placeholder="Digite sua resposta">
+
+                        <div class="button-row">
+                            <button class="btn-check" onclick="checkAnswer()">Verificar</button>
+                            <button class="btn-hint" onclick="showHint()">💡</button>
+                        </div>
+                    </div>
+
+                    <div id="gameOverArea" class="hidden">
+                        <div class="game-over-box">
+                            <div class="game-over-title" id="gameOverTitle">🏆 PARABÉNS!</div>
+                            <div class="final-score" id="finalScore">0</div>
+                            <div class="final-message" id="finalMessage">Você conquistou todos os níveis!</div>
+                            <button class="btn-restart" onclick="restartGame()">Jogar Novamente</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // VARIÁVEIS GLOBAIS
+        let currentPlan = '';
+        let currentPrice = 0;
+        let activationKey = '';
+        let isGameUnlocked = false;
+
+        // JOGO 1: NÚMEROS EM FUGA (5 NÍVEIS)
+        const GAME1_LEVELS = [
+            { 
+                difficulty: 'Básico', 
+                range: [1, 10], 
+                operations: ['+', '-'], 
+                maxOps: 2,
+                etymology: '➕ ADIÇÃO - Do latim "addere" (acrescentar). A operação mais fundamental que une quantidades.'
+            },
+            { 
+                difficulty: 'Iniciante', 
+                range: [1, 20], 
+                operations: ['+', '-'], 
+                maxOps: 2,
+                etymology: '➖ SUBTRAÇÃO - Do latim "subtrahere" (tirar embaixo). Representa a diminuição de uma quantidade.'
+            },
+            { 
+                difficulty: 'Intermediário', 
+                range: [1, 30], 
+                operations: ['+', '-', '*'], 
+                maxOps: 2,
+                etymology: '✖️ MULTIPLICAÇÃO - Do latim "multiplicare" (aumentar muitas vezes). Adição repetida!'
+            },
+            { 
+                difficulty: 'Avançado', 
+                range: [5, 50], 
+                operations: ['+', '-', '*', '/'], 
+                maxOps: 2,
+                etymology: '➗ DIVISÃO - Do latim "dividere" (separar em partes). A inversa da multiplicação.'
+            },
+            { 
+                difficulty: 'Supremo', 
+                range: [10, 100], 
+                operations: ['+', '-', '*', '/'], 
+                maxOps: 3,
+                etymology: '🔢 OPERAÇÕES COMBINADAS - Resolver múltiplas operações na ordem correta: PEMDAS!'
+            }
+        ];
+
+        // JOGO 2: CÁLCULO INFINITO (3 NÍVEIS)
+        const GAME2_LEVELS = [
+            { 
+                difficulty: 'Quântico', 
+                operations: ['√', '^', 'log'],
+                etymology: '🌀 RADICIAÇÃO E POTENCIAÇÃO<br><br>√ RADICIAÇÃO - Do latim "radix" (raiz). Encontrar qual número multiplicado por si dá o resultado.<br><br>^ POTÊNCIA - Do latim "potentia" (força, poder). Multiplicar um número por si mesmo várias vezes.'
+            },
+            { 
+                difficulty: 'Relativístico', 
+                operations: ['sen', 'cos', 'tan'],
+                etymology: '📐 TRIGONOMETRIA<br><br>Do grego "trigono" (triângulo) + "metria" (medida). Estuda relações entre ângulos e lados.<br><br>sen/cos/tan relacionam ângulos a razões entre lados do triângulo retângulo.'
+            },
+            { 
+                difficulty: 'Cósmico', 
+                operations: ['e^x', 'ln', '∞'],
+                etymology: '♾️ FUNÇÕES EXPONENCIAIS E LOGARÍTMICAS<br><br>Do grego "logos" (razão/proporção) + "arithmós" (número). Logaritmo é o expoente necessário.<br><br>"e" (número de Euler) ≈ 2.71828 - a base do crescimento natural no universo!'
+            }
+        ];
+
+        let gameState = {
+            game: 1,
+            level: 1,
+            score: 0,
+            totalAnswered: 0,
+            correctAnswers: 0,
+            currentAnswer: null,
+            hintsUsed: 0,
+            hintAvailable: true
+        };
+
+        // FUNÇÕES DA LOJA
+        function openCheckout(plan, price) {
+            currentPlan = plan;
+            currentPrice = price;
+            document.getElementById('modalTitle').textContent = plan;
+            document.getElementById('modalPrice').textContent = `R$ ${price.toFixed(2)}`;
+            document.getElementById('checkoutModal').classList.add('show');
+        }
+
+        function closeCheckout() {
+            document.getElementById('checkoutModal').classList.remove('show');
+            document.getElementById('checkoutModal').addEventListener('click', function(e) {
+                if (e.target === this) this.classList.remove('show');
+            });
+        }
+
+        function scrollToPricing() {
+            document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function processPayment(e) {
+            e.preventDefault();
+
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const cardNumber = document.getElementById('cardNumber').value;
+
+            // Validar campos básicos
+            if (!fullName || !email || !cardNumber) {
+                alert('Por favor, preencha todos os campos!');
+                return;
+            }
+
+            // Gerar chave de ativação
+            activationKey = 'MATHX-' + Math.random().toString(36).substr(2, 9).toUpperCase() + '-' + Date.now().toString(36).toUpperCase();
+
+            // Simular processamento de pagamento
+            alert(`✅ Pagamento Realizado com Sucesso!\n\nPedido: ${currentPlan}\nValor: R$ ${currentPrice.toFixed(2)}\nEmail: ${email}\n\nChave de Ativação:\n${activationKey}\n\nO jogo será desbloqueado automaticamente!`);
+
+            // Desbloquear jogo
+            isGameUnlocked = true;
+
+            // Salvar em localStorage
+            localStorage.setItem('mathxPro_activated', 'true');
+            localStorage.setItem('mathxPro_key', activationKey);
+            localStorage.setItem('mathxPro_plan', currentPlan);
+            localStorage.setItem('mathxPro_email', email);
+
+            // Fechar modal e começar jogo
+            closeCheckout();
+            startGame();
+        }
+
+        function startGame() {
+            document.getElementById('storePage').classList.add('hidden');
+            document.getElementById('gamePage').classList.remove('hidden');
+            document.getElementById('gamePage').classList.remove('game-2');
+            
+            // Criar partículas
+            createParticles(false);
+            
+            // Resetar jogo
+            gameState = {
+                game: 1,
+                level: 1,
+                score: 0,
+                totalAnswered: 0,
+                correctAnswers: 0,
+                currentAnswer: null,
+                hintsUsed: 0,
+                hintAvailable: true
+            };
+
+            generateQuestion();
+        }
+
+        function createParticles(isGame2 = false) {
+            const particles = document.querySelectorAll('.particle, .particle-neon');
+            particles.forEach(p => p.remove());
+
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = isGame2 ? 'particle-neon' : 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (20 + Math.random() * 10) + 's';
+                document.body.appendChild(particle);
+            }
+        }
+
+        function showTerms() {
+            alert('TERMOS DE USO - MathX Pro\n\n1. Este é um produto digital único\n2. Licença perpétua para uso pessoal\n3. Não é permitido revender ou compartilhar\n4. Suporte técnico incluído\n5. Atualizações gratuitas permanentes\n\nAo comprar, você concorda com estes termos.');
+        }
+
+        function showPrivacy() {
+            alert('POLÍTICA DE PRIVACIDADE\n\n- Seus dados são usados apenas para entrega da licença\n- Não compartilhamos informações com terceiros\n- Sua chave de ativação é pessoal e intransferível\n- Você pode solicitar exclusão de dados\n\nContato: privacidade@mathxpro.com');
+        }
+
+        // FUNÇÕES DO JOGO
+        function generateQuestion() {
+            if (gameState.game === 1) {
+                generateGame1Question();
+            } else {
+                generateGame2Question();
+            }
+        }
+
+        function generateGame1Question() {
+            const levelConfig = GAME1_LEVELS[gameState.level - 1];
+            
+            document.getElementById('etymologyArea').innerHTML = `
+                <div class="etymology-box">
+                    <div class="etymology-title">📚 Lição: ${levelConfig.etymology.split(' - ')[0]}</div>
+                    <div class="etymology-text">${levelConfig.etymology.split(' - ')[1]}</div>
+                </div>
+            `;
+
+            const numOperands = Math.floor(Math.random() * (levelConfig.maxOps - 1)) + 2;
+            let expression = '';
+            let num1 = Math.floor(Math.random() * (levelConfig.range[1] - levelConfig.range[0] + 1)) + levelConfig.range[0];
+            expression = num1.toString();
+
+            for (let i = 1; i < numOperands; i++) {
+                const op = levelConfig.operations[Math.floor(Math.random() * levelConfig.operations.length)];
+                const num2 = Math.floor(Math.random() * (levelConfig.range[1] - levelConfig.range[0] + 1)) + levelConfig.range[0];
+                expression += ` ${op} ${num2}`;
+            }
+
+            try {
+                const answer = Math.round(eval(expression) * 100) / 100;
+                document.getElementById('mathExpr').textContent = expression;
+                document.getElementById('difficulty').textContent = levelConfig.difficulty;
+                gameState.currentAnswer = answer;
+                resetInputs();
+                updateStats();
+            } catch (e) {
+                generateGame1Question();
+            }
+        }
+
+        function generateGame2Question() {
+            const levelConfig = GAME2_LEVELS[gameState.level - 1];
+            
+            document.getElementById('etymologyArea').innerHTML = `
+                <div class="etymology-box">
+                    <div class="etymology-title">🧬 Lição: ${levelConfig.difficulty}</div>
+                    <div class="etymology-text">${levelConfig.etymology}</div>
+                </div>
+            `;
+
+            let expression = '';
+            let answer = 0;
+            const random = Math.random();
+
+            if (gameState.level === 1) {
+                const num = Math.floor(Math.random() * 100 + 1);
+                if (random < 0.4) {
+                    expression = `√${num}`;
+                    answer = Math.round(Math.sqrt(num) * 100) / 100;
+                } else if (random < 0.7) {
+                    const base = Math.floor(Math.random() * 5 + 2);
+                    const exp = Math.floor(Math.random() * 4 + 2);
+                    expression = `${base}^${exp}`;
+                    answer = Math.pow(base, exp);
+                } else {
+                    const num2 = Math.floor(Math.random() * 900 + 100);
+                    expression = `log₁₀(${num2})`;
+                    answer = Math.round(Math.log10(num2) * 100) / 100;
+                }
+            } else if (gameState.level === 2) {
+                const angles = [0, 30, 45, 60, 90];
+                const angle = angles[Math.floor(Math.random() * angles.length)];
+                if (random < 0.4) {
+                    expression = `sen(${angle}°)`;
+                    answer = Math.round(Math.sin(angle * Math.PI / 180) * 1000) / 1000;
+                } else if (random < 0.7) {
+                    expression = `cos(${angle}°)`;
+                    answer = Math.round(Math.cos(angle * Math.PI / 180) * 1000) / 1000;
+                } else {
+                    expression = `tan(${angle}°)`;
+                    answer = Math.round(Math.tan(angle * Math.PI / 180) * 1000) / 1000;
+                }
+            } else {
+                if (random < 0.4) {
+                    const x = Math.floor(Math.random() * 5 + 1);
+                    expression = `e^${x}`;
+                    answer = Math.round(Math.exp(x) * 100) / 100;
+                } else if (random < 0.7) {
+                    const num3 = Math.floor(Math.random() * 100 + 1);
+                    expression = `ln(${num3})`;
+                    answer = Math.round(Math.log(num3) * 100) / 100;
+                } else {
+                    expression = `e ≈ ?`;
+                    answer = 2.72;
+                }
+            }
+
+            document.getElementById('mathExpr').textContent = expression;
+            document.getElementById('difficulty').textContent = levelConfig.difficulty;
+            gameState.currentAnswer = answer;
+            resetInputs();
+            updateStats();
+        }
+
+        function resetInputs() {
+            document.getElementById('answerInput').value = '';
+            document.getElementById('answerInput').className = 'input-field';
+            document.getElementById('feedbackArea').innerHTML = '';
+            document.getElementById('hintArea').innerHTML = '';
+            gameState.hintAvailable = true;
+            gameState.hintsUsed = 0;
+        }
+
+        function checkAnswer() {
+            const input = document.getElementById('answerInput');
+            const userAnswer = parseFloat(input.value);
+
+            if (isNaN(userAnswer)) {
+                showFeedback('Digite um número válido!', 'error');
+                return;
+            }
+
+            gameState.totalAnswered++;
+
+            if (Math.abs(userAnswer - gameState.currentAnswer) < 0.05) {
+                gameState.correctAnswers++;
+                gameState.score += Math.max(200 - (gameState.hintsUsed * 20), 50);
+                input.className = 'input-field';
+                showFeedback('✅ Correto! Excelente!', 'success');
+
+                setTimeout(() => {
+                    if (gameState.correctAnswers % 2 === 0 && gameState.level < (gameState.game === 1 ? 5 : 3)) {
+                        levelUp();
+                    } else if (gameState.level === (gameState.game === 1 ? 5 : 3) && gameState.correctAnswers % 2 === 0) {
+                        endCurrentGame();
+                    } else {
+                        generateQuestion();
+                    }
+                }, 1500);
+            } else {
+                showFeedback('❌ Tente novamente!', 'error');
+            }
+
+            updateStats();
+        }
+
+        function showHint() {
+            if (!gameState.hintAvailable) {
+                showFeedback('Dica já usada!', 'error');
+                return;
+            }
+
+            gameState.hintsUsed++;
+            gameState.hintAvailable = false;
+
+            const answer = gameState.currentAnswer;
+            let hint = '';
+            const isDecimal = answer % 1 !== 0;
+
+            if (gameState.hintsUsed === 1) {
+                if (isDecimal) {
+                    hint = `Decimal entre ${Math.floor(answer)} e ${Math.ceil(answer)}`;
+                } else {
+                    hint = `Número ${answer % 2 === 0 ? 'par' : 'ímpar'}`;
+                }
+            } else if (gameState.hintsUsed === 2) {
+                hint = `Próximo a ${Math.round(answer * 10) / 10}`;
+            } else {
+                hint = `Resposta: ${answer}`;
+            }
+
+            document.getElementById('hintArea').innerHTML = `<div class="hint-box">💡 ${hint}</div>`;
+        }
+
+        function showFeedback(message, type) {
+            document.getElementById('feedbackArea').innerHTML = `<div class="feedback-msg ${type}">${message}</div>`;
+        }
+
+        function levelUp() {
+            gameState.level++;
+            gameState.score += gameState.game === 1 ? 500 : 1000;
+            showFeedback('🚀 Nível desbloqueado!', 'success');
+            setTimeout(generateQuestion, 1500);
+        }
+
+        function updateStats() {
+            document.getElementById('score').textContent = gameState.score;
+            document.getElementById('correct').textContent = `${gameState.correctAnswers}/${gameState.totalAnswered}`;
+            document.getElementById('levelNum').textContent = gameState.level;
+            const maxLevel = gameState.game === 1 ? 5 : 3;
+            const progress = (gameState.level / maxLevel) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+
+        function endCurrentGame() {
+            if (gameState.game === 1) {
+                endGame1();
+            } else {
+                endGame2();
+            }
+        }
+
+        function endGame1() {
+            document.getElementById('questionArea').classList.add('hidden');
+            document.getElementById('etymologyArea').classList.add('hidden');
+            document.getElementById('gameOverArea').classList.remove('hidden');
+            document.getElementById('gameOverTitle').textContent = '🏆 Você conquistou!';
+            document.getElementById('finalScore').textContent = gameState.score;
+            document.getElementById('finalMessage').textContent = 'Prepare-se para Cálculo Infinito!';
+
+            setTimeout(continueToGame2, 3000);
+        }
+
+        function endGame2() {
+            document.getElementById('questionArea').classList.add('hidden');
+            document.getElementById('etymologyArea').classList.add('hidden');
+            document.getElementById('gameOverArea').classList.remove('hidden');
+            document.getElementById('gameOverTitle').textContent = '👑 GÊNIO MATEMÁTICO!';
+            document.getElementById('finalScore').textContent = gameState.score;
+            document.getElementById('finalMessage').textContent = 'Você dominou toda a matemática!';
+        }
+
+        function continueToGame2() {
+            gameState.game = 2;
+            gameState.level = 1;
+            gameState.totalAnswered = 0;
+            gameState.correctAnswers = 0;
+            gameState.hintsUsed = 0;
+
+            document.getElementById('gamePage').classList.add('game-2');
+            document.getElementById('gameTitle').textContent = '⚡ Cálculo Infinito';
+            document.getElementById('gameSubtitle').textContent = 'Dominando 3 Níveis Supremos';
+            document.getElementById('levelLabel').textContent = 'Dimensão';
+
+            setTimeout(() => {
+                createParticles(true);
+                document.getElementById('gameOverArea').classList.add('hidden');
+                document.getElementById('questionArea').classList.remove('hidden');
+                document.getElementById('etymologyArea').classList.remove('hidden');
+                generateQuestion();
+                updateStats();
+            }, 2000);
+        }
+
+        function restartGame() {
+            gameState = {
+                game: 1,
+                level: 1,
+                score: 0,
+                totalAnswered: 0,
+                correctAnswers: 0,
+                currentAnswer: null,
+                hintsUsed: 0,
+                hintAvailable: true
+            };
+
+            document.getElementById('gamePage').classList.remove('game-2');
+            document.getElementById('gameTitle').textContent = '🎮 Números em Fuga';
+            document.getElementById('gameSubtitle').textContent = 'Domine os 5 níveis';
+            document.getElementById('levelLabel').textContent = 'Nível Atual';
+            document.getElementById('gameOverArea').classList.add('hidden');
+            document.getElementById('questionArea').classList.remove('hidden');
+            document.getElementById('etymologyArea').classList.remove('hidden');
+
+            createParticles(false);
+            generateQuestion();
+        }
+
+        document.getElementById('answerInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') checkAnswer();
+        });
+
+        // Verificar se já tem licença
+        window.addEventListener('load', function() {
+            if (localStorage.getItem('mathxPro_activated') === 'true') {
+                isGameUnlocked = true;
+                startGame();
+            }
+        });
+
+        // Fechar modal ao clicar fora
+        document.getElementById('checkoutModal').addEventListener('click', function(e) {
+            if (e.target === this) closeCheckout();
+        });
+    </script>
+</body>
+</html>
